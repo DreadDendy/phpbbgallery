@@ -266,7 +266,7 @@ class upload
 	 */
 	public function update_image($image_id, $needs_approval = false, $is_in_contest = false)
 	{
-		if ($this->file_limit && ($this->uploaded_files >= $this->file_limit))
+		if ($this->file_limit && ($this->uploaded_files > $this->file_limit)) // наверное тут не надо >= т.к. это происходит после загрузки самих файлов
 		{
 			$this->new_error($this->language->lang('UPLOAD_ERROR', $this->image_data[$image_id]['image_name'], $this->language->lang('QUOTA_REACHED')));
 			return false;
@@ -339,7 +339,8 @@ class upload
 			WHERE image_id = ' . (int) $image_id;
 		$this->db->sql_query($sql);
 
-		$this->uploaded_files++;
+		// Тут явно инкремент странный; почему обновление считается за загрузку? Это логически ломало загрузку.
+		//$this->uploaded_files++;
 
 		return true;
 	}

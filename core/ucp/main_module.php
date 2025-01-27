@@ -757,7 +757,7 @@ class main_module
 			$db->sql_freeresult($result);
 
 			$phpbb_ext_gallery_config->set('num_images', $row['num_images']);
-			$phpbb_ext_gallery_config->set('num_comments', $row['num_comments']);
+			$phpbb_ext_gallery_config->set('num_comments', (int) $row['num_comments']);
 
 			$num_images = sizeof($deleted_images);
 			if ($num_images)
