@@ -484,8 +484,8 @@ class image
 			'POSTER_WARNINGS'     => $user_data['warnings'] ?? 0,
 			'POSTER_AGE'          => $user_data['age'] ?? '',
 
-			'POSTER_ONLINE_IMG' => ($user_id == ANONYMOUS || !$this->config['load_onlinetrack']) ? '' : ($user_data['online'] ? $this->user->img('icon_user_online', 'ONLINE') : $this->user->img('icon_user_offline', 'OFFLINE')),
-			'S_POSTER_ONLINE'   => ($user_id == ANONYMOUS || !$this->config['load_onlinetrack']) ? false : $user_data['online'],
+			'POSTER_ONLINE_IMG' => ($user_id == ANONYMOUS || !$this->config['load_onlinetrack']) ? '' : (($user_data['online'] ?? false) ? $this->user->img('icon_user_online', 'ONLINE') : $this->user->img('icon_user_offline', 'OFFLINE')),
+			'S_POSTER_ONLINE'   => ($user_id == ANONYMOUS || !$this->config['load_onlinetrack']) ? false : ($user_data['online'] ?? false),
 
 			//'U_POSTER_PROFILE'		=> $user_data['profile'] ?? '',
 			'U_POSTER_SEARCH'   => $user_data['search'] ?? '',
